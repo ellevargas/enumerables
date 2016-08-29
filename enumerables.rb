@@ -2,6 +2,8 @@
 #####       Enumerables      #####
 ##################################
 
+
+
   #Enumerable is a module that is mixed in to both Array and Hash (and a couple other classes too, but those are the main ones).
 
 ##################################
@@ -31,11 +33,24 @@
 
           #Ruby classes can by dynamically extended, meaning that, at any point after it is declared, a class can be re-opened and modified.
 
+          # This is not necessarily advised because not everyone might be on the same page as you are with regards to the extended class.
+
           class String # <= wat?!? We can do this? We sure can!
             def smiley_spaces
               self.gsub(/\s+/, " :) ")
             end
           end
+
+          # A regular expression followed by a + matches one or more occurrences of the one-character regular expression
+
+          # puts "I'm a string!".smiley_spaces
+
+
+          # BAD BAD BAD DO NOT
+          # def upcase
+          #   puts "MESSING UP EVERYTHING!"
+          # end
+          # puts "I'm a string!".upcase
 
           ####################
           ##Our First Mixin!##
@@ -51,9 +66,32 @@
             include AllSmiles
           end
 
+          # puts "I'm a new string!".to_smile
+
           class Array
             include AllSmiles
           end
+
+          # puts [1, 2, 3, 4].to_smile
+
+          class Hash
+            include AllSmiles
+          end
+
+          # hash = {"1": "one", "2": "two"}
+          #
+          # puts hash.to_smile
+          # lists by key/value pairs
+
+          class Fixnum
+            include AllSmile
+          end
+
+          puts 3.to_smile
+
+          #length is not a method of Fixnum
+
+
 
 ##################################
 #####       ENUMERABLES      #####
@@ -125,6 +163,6 @@
 
         #Select will filter for elements where the condition is true.
           #(1..100).to_a.select {|n| n % 10 == 0 }
-          
+
        #Reject filters for elements where the condition is false.
           #(1..15).to_a.reject { |n| n % 5 == 0 }
